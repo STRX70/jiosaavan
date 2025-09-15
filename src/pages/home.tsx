@@ -200,7 +200,7 @@ Home.get("/", (c) => {
         <main className="relative max-w-6xl mx-auto px-6 py-20 z-10">
           <div className="text-center mb-20 animate-fade-in">
             <div className="flex flex-col items-center">
-              <div className="w-16 h-16 bg-gradient-to-br from-neon-cyan to-neon-purple rounded-full flex items-center justify-center mb-6 animate-glow-pulse">
+              <div className="w-16 h-16 bg-black rounded-full flex items-center justify-center mb-6 animate-glow-pulse">
                 <svg className="w-8 h-8 text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                   <path
                     fill="currentColor"
