@@ -8,7 +8,7 @@ export const FloatingOrbs = ({ count }: { count: number }) => {
       {Array.from({ length: count || 25 }, (_, idx) => (
         <div
           key={idx}
-          className="absolute rounded-full bg-gradient-to-r from-cyan-500/30 to-purple-500/30"
+          className="absolute rounded-full bg-black"
           style={{
             top: `${Math.random() * 100}%`,
             left: `${Math.random() * 100}%`,
