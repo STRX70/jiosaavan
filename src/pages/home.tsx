@@ -8,7 +8,7 @@ export const FloatingOrbs = ({ count }: { count: number }) => {
       {Array.from({ length: count || 25 }, (_, idx) => (
         <div
           key={idx}
-          className="absolute rounded-full bg-black"
+          className="absolute rounded-full bg-gradient-to-r from-blue-200/30 to-gray-300/30"
           style={{
             top: `${Math.random() * 100}%`,
             left: `${Math.random() * 100}%`,
@@ -17,7 +17,7 @@ export const FloatingOrbs = ({ count }: { count: number }) => {
             animation: `float ${Math.random() * 12 + 6}s ease-in-out infinite`,
             animationDelay: `${Math.random() * 5}s`,
             filter: "blur(3px)",
-            boxShadow: "0 0 10px rgba(139, 92, 246, 0.3)",
+            boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)",
           }}
         />
       ))}
@@ -37,7 +37,7 @@ export const ShootingStars = ({ count }: { count: number }) => {
         return (
           <div
             key={i}
-            className="absolute rounded-full bg-gradient-to-r from-white to-cyan-300"
+            className="absolute rounded-full bg-gradient-to-r from-white to-gray-200"
             style={{
               width: `${size}px`,
               height: `${size}px`,
@@ -46,7 +46,7 @@ export const ShootingStars = ({ count }: { count: number }) => {
               opacity: 0,
               animation: `shoot ${duration}s linear ${delay}s infinite`,
               filter: "blur(1px)",
-              boxShadow: "0 0 8px rgba(255, 255, 255, 0.5)",
+              boxShadow: "0 0 8px rgba(0, 0, 0, 0.2)",
             }}
           />
         )
@@ -91,28 +91,24 @@ Home.get("/", (c) => {
                       700: '#1e1e2d',
                       600: '#2a2a3d',
                     },
-                    accent: {
-                      50: '#e5f3ff',
-                      100: '#b3daff',
-                      200: '#80c0ff',
-                      300: '#4da6ff',
-                      400: '#1a8cff',
-                      500: '#0077ff',
-                      600: '#005fcc',
-                      700: '#004799',
-                      800: '#003066',
-                      900: '#001933',
-                    },
-                    neon: {
-                      cyan: '#00f6ff',
-                      purple: '#d946ef',
+                    primary: {
+                      50: '#f0f4f8',
+                      100: '#d1dbe6',
+                      200: '#b3c2d4',
+                      300: '#94a9c2',
+                      400: '#7690b0',
+                      500: '#57779e',
+                      600: '#46607e',
+                      700: '#34485f',
+                      800: '#233040',
+                      900: '#111820',
                     },
                   },
                   animation: {
                     'fade-in': 'fadeIn 1s ease-out forwards',
                     'float': 'float 10s ease-in-out infinite',
                     'shoot': 'shoot 8s linear infinite',
-                    'glow-pulse': 'glowPulse 3s ease-in-out infinite',
+                    'pulse': 'pulse 3s ease-in-out infinite',
                     'blink-cursor': 'blinkCursor 1s step-end infinite',
                     'scale-in': 'scaleIn 0.5s ease-out forwards',
                   },
@@ -131,9 +127,9 @@ Home.get("/", (c) => {
                       '60%': { opacity: 1 },
                       '100%': { transform: 'translateY(100vh) translateX(100vw)', opacity: 0 },
                     },
-                    glowPulse: {
-                      '0%, 100%': { boxShadow: '0 0 10px rgba(0, 246, 255, 0.3)' },
-                      '50%': { boxShadow: '0 0 20px rgba(0, 246, 255, 0.5)' },
+                    pulse: {
+                      '0%, 100%': { boxShadow: '0 0 10px rgba(87, 119, 158, 0.2)' },
+                      '50%': { boxShadow: '0 0 15px rgba(87, 119, 158, 0.3)' },
                     },
                     blinkCursor: {
                       '0%, 100%': { opacity: 1 },
@@ -165,26 +161,26 @@ Home.get("/", (c) => {
               background: #0a0a0f;
               color: #e5e7eb;
             }
-            .gradient-neon {
-              background: linear-gradient(90deg, #00f6ff, #d946ef);
+            .gradient-primary {
+              background: linear-gradient(90deg, #57779e, #94a9c2);
               -webkit-background-clip: text;
               background-clip: text;
               color: transparent;
             }
-            .card-neon {
+            .card {
               background: rgba(20, 20, 31, 0.85);
-              border: 1px solid rgba(0, 246, 255, 0.2);
+              border: 1px solid rgba(87, 119, 158, 0.2);
               transition: all 0.3s ease;
             }
-            .card-neon:hover {
+            .card:hover {
               transform: translateY(-5px);
-              border-color: rgba(0, 246, 255, 0.4);
-              box-shadow: 0 6px 15px rgba(0, 246, 255, 0.2);
+              border-color: rgba(87, 119, 158, 0.4);
+              box-shadow: 0 6px 15px rgba(87, 119, 158, 0.2);
             }
-            .terminal-neon {
+            .terminal {
               background: rgba(10, 10, 15, 0.95);
-              border: 1px solid rgba(0, 246, 255, 0.3);
-              box-shadow: 0 0 15px rgba(0, 246, 255, 0.1);
+              border: 1px solid rgba(87, 119, 158, 0.3);
+              box-shadow: 0 0 15px rgba(87, 119, 158, 0.1);
             }
           `,
           }}
@@ -200,7 +196,7 @@ Home.get("/", (c) => {
         <main className="relative max-w-6xl mx-auto px-6 py-20 z-10">
           <div className="text-center mb-20 animate-fade-in">
             <div className="flex flex-col items-center">
-              <div className="w-16 h-16 bg-black rounded-full flex items-center justify-center mb-6 animate-glow-pulse">
+              <div className="w-16 h-16 bg-black rounded-full flex items-center justify-center mb-6 animate-pulse">
                 <svg className="w-8 h-8 text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                   <path
                     fill="currentColor"
@@ -213,13 +209,13 @@ Home.get("/", (c) => {
                   />
                 </svg>
               </div>
-              <h1 className="text-5xl md:text-6xl font-bold gradient-neon font-space mb-4">{title}</h1>
+              <h1 className="text-5xl md:text-6xl font-bold gradient-primary font-space mb-4">{title}</h1>
               <p className="text-lg text-gray-300 max-w-2xl mx-auto">{description}</p>
               <div className="flex gap-4 justify-center mt-8">
-                <span className="px-4 py-1.5 bg-neon-cyan/10 text-neon-cyan text-sm font-medium rounded-full border border-neon-cyan/30 animate-scale-in">
+                <span className="px-4 py-1.5 bg-primary-500/10 text-primary-500 text-sm font-medium rounded-full border border-primary-500/30 animate-scale-in">
                   TypeScript
                 </span>
-                <span className="px-4 py-1.5 bg-neon-purple/10 text-neon-purple text-sm font-medium rounded-full border border-neon-purple/30 animate-scale-in" style={{ animationDelay: '0.2s' }}>
+                <span className="px-4 py-1.5 bg-primary-500/10 text-primary-500 text-sm font-medium rounded-full border border-primary-500/30 animate-scale-in" style={{ animationDelay: '0.2s' }}>
                   Unofficial
                 </span>
               </div>
@@ -227,8 +223,8 @@ Home.get("/", (c) => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="card-neon rounded-xl p-6 animate-scale-in">
-              <div className="w-12 h-12 bg-neon-cyan/10 rounded-lg flex items-center justify-center text-neon-cyan mb-4">
+            <div className="card rounded-xl p-6 animate-scale-in">
+              <div className="w-12 h-12 bg-primary-500/10 rounded-lg flex items-center justify-center text-primary-500 mb-4">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="28"
@@ -251,7 +247,7 @@ Home.get("/", (c) => {
               <ul className="space-y-3 text-gray-300 text-sm">
                 <li className="flex items-start gap-2">
                   <svg
-                    className="w-5 h-5 mt-0.5 text-neon-cyan"
+                    className="w-5 h-5 mt-0.5 text-primary-500"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -263,7 +259,7 @@ Home.get("/", (c) => {
                 </li>
                 <li className="flex items-start gap-2">
                   <svg
-                    className="w-5 h-5 mt-0.5 text-neon-cyan"
+                    className="w-5 h-5 mt-0.5 text-primary-500"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -275,7 +271,7 @@ Home.get("/", (c) => {
                 </li>
                 <li className="flex items-start gap-2">
                   <svg
-                    className="w-5 h-5 mt-0.5 text-neon-cyan"
+                    className="w-5 h-5 mt-0.5 text-primary-500"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -287,7 +283,7 @@ Home.get("/", (c) => {
                 </li>
                 <li className="flex items-start gap-2">
                   <svg
-                    className="w-5 h-5 mt-0.5 text-neon-cyan"
+                    className="w-5 h-5 mt-0.5 text-primary-500"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -303,11 +299,11 @@ Home.get("/", (c) => {
             <a
               href="https://github.com/KEX001/Jiosaavan"
               target="_blank"
-              className="card-neon rounded-xl p-6 group animate-scale-in"
+              className="card rounded-xl p-6 group animate-scale-in"
               rel="noreferrer"
               style={{ animationDelay: '0.1s' }}
             >
-              <div className="w-12 h-12 bg-neon-purple/10 rounded-lg flex items-center justify-center text-neon-purple mb-4">
+              <div className="w-12 h-12 bg-primary-500/10 rounded-lg flex items-center justify-center text-primary-500 mb-4">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="28"
@@ -326,7 +322,7 @@ Home.get("/", (c) => {
               <p className="text-gray-300 text-sm mb-4">
                 Explore and contribute to our open-source project on GitHub.
               </p>
-              <div className="text-neon-cyan font-medium flex items-center gap-1.5 group-hover:gap-2.5 transition-all">
+              <div className="text-primary-500 font-medium flex items-center gap-1.5 group-hover:gap-2.5 transition-all">
                 View on GitHub
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -345,8 +341,8 @@ Home.get("/", (c) => {
               </div>
             </a>
 
-            <div className="card-neon rounded-xl p-6 animate-scale-in" style={{ animationDelay: '0.2s' }}>
-              <div className="w-12 h-12 bg-gradient-to-br from-neon-cyan to-neon-purple rounded-lg flex items-center justify-center text-white mb-4">
+            <div className="card rounded-xl p-6 animate-scale-in" style={{ animationDelay: '0.2s' }}>
+              <div className="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-300 rounded-lg flex items-center justify-center text-white mb-4">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="28"
@@ -367,7 +363,7 @@ Home.get("/", (c) => {
                 <a
                   href="https://github.com/kex001"
                   target="_blank"
-                  className="text-gray-400 hover:text-neon-cyan transition-colors"
+                  className="text-gray-400 hover:text-primary-500 transition-colors"
                   rel="noreferrer"
                 >
                   <svg
@@ -387,7 +383,7 @@ Home.get("/", (c) => {
                 <a
                   href="https://twitter.com/kxunall"
                   target="_blank"
-                  className="text-gray-400 hover:text-neon-purple transition-colors"
+                  className="text-gray-400 hover:text-primary-500 transition-colors"
                   rel="noreferrer"
                 >
                   <svg
@@ -407,7 +403,7 @@ Home.get("/", (c) => {
                 <a
                   href="https://t.me/ll_KEX_ll"
                   target="_blank"
-                  className="text-gray-400 hover:text-neon-cyan transition-colors"
+                  className="text-gray-400 hover:text-primary-500 transition-colors"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -429,10 +425,10 @@ Home.get("/", (c) => {
             </div>
           </div>
 
-          <div className="mt-24 terminal-neon rounded-xl p-8 max-w-4xl mx-auto animate-scale-in" style={{ animationDelay: '0.3s' }}>
-            <h2 className="text-3xl font-bold text-center mb-6 font-space gradient-neon">API Documentation</h2>
-            <div className="bg-dark-800 rounded-lg overflow-hidden border border-neon-cyan/20">
-              <div className="flex items-center px-4 py-3 bg-dark-900 border-b border-neon-cyan/20">
+          <div className="mt-24 terminal rounded-xl p-8 max-w-4xl mx-auto animate-scale-in" style={{ animationDelay: '0.3s' }}>
+            <h2 className="text-3xl font-bold text-center mb-6 font-space gradient-primary">API Documentation</h2>
+            <div className="bg-dark-800 rounded-lg overflow-hidden border border-primary-500/20">
+              <div className="flex items-center px-4 py-3 bg-dark-900 border-b border-primary-500/20">
                 <div className="flex space-x-2 mr-4">
                   <div className="w-3 h-3 rounded-full bg-red-500"></div>
                   <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
@@ -441,52 +437,52 @@ Home.get("/", (c) => {
                 <div className="text-sm text-gray-400 font-space">https://jiosaavan-mu.vercel.app/</div>
                 <div className="ml-auto flex items-center">
                   <span className="text-sm text-gray-500 mr-2">●</span>
-                  <div className="w-2 h-2 rounded-full bg-neon-cyan animate-blink-cursor"></div>
+                  <div className="w-2 h-2 rounded-full bg-primary-500 animate-blink-cursor"></div>
                 </div>
               </div>
               <div className="p-6 font-space text-sm text-gray-200">
                 <div className="flex items-start mb-4">
-                  <span className="text-neon-cyan mr-2">➜</span>
-                  <span className="text-neon-purple">URL</span>
-                  <span className="text-accent-300 ml-2">https://jiosaavan-mu.vercel.app/</span>
+                  <span className="text-primary-500 mr-2">➜</span>
+                  <span className="text-primary-300">URL</span>
+                  <span className="text-primary-300 ml-2">https://jiosaavan-mu.vercel.app/</span>
                 </div>
                 <div className="mb-6">
-                  <div className="text-neon-cyan mb-2">// Search Operations</div>
+                  <div className="text-primary-500 mb-2">// Search Operations</div>
                   <div className="ml-4">
-                    <div className="mb-2 flex items-center"><span className="text-yellow-400">GET</span><span className="text-accent-300 ml-2">/api/search</span></div>
-                    <div className="mb-2 flex items-center"><span className="text-yellow-400">GET</span><span className="text-accent-300 ml-2">/api/search/songs</span></div>
-                    <div className="mb-2 flex items-center"><span className="text-yellow-400">GET</span><span className="text-accent-300 ml-2">/api/search/albums</span></div>
-                    <div className="mb-2 flex items-center"><span className="text-yellow-400">GET</span><span className="text-accent-300 ml-2">/api/search/artists</span></div>
-                    <div className="flex items-center"><span className="text-yellow-400">GET</span><span className="text-accent-300 ml-2">/api/search/playlists</span></div>
+                    <div className="mb-2 flex items-center"><span className="text-yellow-400">GET</span><span className="text-primary-300 ml-2">/api/search</span></div>
+                    <div className="mb-2 flex items-center"><span className="text-yellow-400">GET</span><span className="text-primary-300 ml-2">/api/search/songs</span></div>
+                    <div className="mb-2 flex items-center"><span className="text-yellow-400">GET</span><span className="text-primary-300 ml-2">/api/search/albums</span></div>
+                    <div className="mb-2 flex items-center"><span className="text-yellow-400">GET</span><span className="text-primary-300 ml-2">/api/search/artists</span></div>
+                    <div className="flex items-center"><span className="text-yellow-400">GET</span><span className="text-primary-300 ml-2">/api/search/playlists</span></div>
                   </div>
                 </div>
                 <div className="mb-6">
-                  <div className="text-neon-cyan mb-2">// Song Operations</div>
+                  <div className="text-primary-500 mb-2">// Song Operations</div>
                   <div className="ml-4">
-                    <div className="mb-2 flex items-center"><span className="text-yellow-400">GET</span><span className="text-accent-300 ml-2">/api/songs</span></div>
-                    <div className="mb-2 flex items-center"><span className="text-yellow-400">GET</span><span className="text-accent-300 ml-2">/api/songs/:id</span></div>
+                    <div className="mb-2 flex items-center"><span className="text-yellow-400">GET</span><span className="text-primary-300 ml-2">/api/songs</span></div>
+                    <div className="mb-2 flex items-center"><span className="text-yellow-400">GET</span><span className="text-primary-300 ml-2">/api/songs/:id</span></div>
                   </div>
                 </div>
                 <div className="mb-6">
-                  <div className="text-neon-cyan mb-2">// Artist Operations</div>
+                  <div className="text-primary-500 mb-2">// Artist Operations</div>
                   <div className="ml-4">
-                    <div className="mb-2 flex items-center"><span className="text-yellow-400">GET</span><span className="text-accent-300 ml-2">/api/artists</span></div>
-                    <div className="mb-2 flex items-center"><span className="text-yellow-400">GET</span><span className="text-accent-300 ml-2">/api/artists/:id</span></div>
-                    <div className="mb-2 flex items-center"><span className="text-yellow-400">GET</span><span className="text-accent-300 ml-2">/api/artists/:id/songs</span></div>
-                    <div className="flex items-center"><span className="text-yellow-400">GET</span><span className="text-accent-300 ml-2">/api/artists/:id/albums</span></div>
+                    <div className="mb-2 flex items-center"><span className="text-yellow-400">GET</span><span className="text-primary-300 ml-2">/api/artists</span></div>
+                    <div className="mb-2 flex items-center"><span className="text-yellow-400">GET</span><span className="text-primary-300 ml-2">/api/artists/:id</span></div>
+                    <div className="mb-2 flex items-center"><span className="text-yellow-400">GET</span><span className="text-primary-300 ml-2">/api/artists/:id/songs</span></div>
+                    <div className="flex items-center"><span className="text-yellow-400">GET</span><span className="text-primary-300 ml-2">/api/artists/:id/albums</span></div>
                   </div>
                 </div>
                 <div>
-                  <div className="text-neon-cyan mb-2">// Collection Operations</div>
+                  <div className="text-primary-500 mb-2">// Collection Operations</div>
                   <div className="ml-4">
-                    <div className="mb-2 flex items-center"><span className="text-yellow-400">GET</span><span className="text-accent-300 ml-2">/api/albums</span></div>
-                    <div className="flex items-center"><span className="text-yellow-400">GET</span><span className="text-accent-300 ml-2">/api/playlists</span></div>
+                    <div className="mb-2 flex items-center"><span className="text-yellow-400">GET</span><span className="text-primary-300 ml-2">/api/albums</span></div>
+                    <div className="flex items-center"><span className="text-yellow-400">GET</span><span className="text-primary-300 ml-2">/api/playlists</span></div>
                   </div>
                 </div>
                 <div className="flex items-center mt-4">
-                  <span className="text-neon-cyan mr-2">➜</span>
+                  <span className="text-primary-500 mr-2">➜</span>
                   <span className="text-gray-300">_</span>
-                  <span className="ml-0.5 h-4 w-1 bg-neon-cyan animate-blink-cursor"></span>
+                  <span className="ml-0.5 h-4 w-1 bg-primary-500 animate-blink-cursor"></span>
                 </div>
               </div>
             </div>
@@ -496,7 +492,7 @@ Home.get("/", (c) => {
             <div className="max-w-6xl mx-auto px-6">
               <div className="border-t border-dark-700/50 pt-6">
                 <p>© {new Date().getFullYear()} JioSaavn. Not affiliated with JioSaavn.</p>
-                <p className="mt-2 text-xs">Built by Kunal with <span className="text-neon-cyan">✨</span></p>
+                <p className="mt-2 text-xs">Built by Kunal with <span className="text-primary-500">✨</span></p>
               </div>
             </div>
           </footer>
